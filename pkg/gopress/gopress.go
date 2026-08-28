@@ -1,9 +1,9 @@
 package gopress
 
 import (
-	"github.com/Mulyawan-ts/gopress/pkg/counter"
-	"github.com/Mulyawan-ts/gopress/pkg/pop"
-	"github.com/Mulyawan-ts/gopress/pkg/push"
+	"github.com/Mulyawan-ts/gopress/pkg/feature/counter"
+	"github.com/Mulyawan-ts/gopress/pkg/feature/pop"
+	"github.com/Mulyawan-ts/gopress/pkg/feature/push"
 )
 
 type GoPress struct {
@@ -15,6 +15,7 @@ type GoPress struct {
 func New(cap int) *GoPress {
 	q := make(chan string, cap)
 	c := counter.New()
+
 	return &GoPress{
 		pusher:  push.NewPusher(q, c),
 		popper:  pop.NewPopper(q),
