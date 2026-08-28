@@ -1,6 +1,8 @@
 package gopress
 
 import (
+	"context"
+
 	"github.com/Mulyawan-ts/gopress/pkg/feature/counter"
 	"github.com/Mulyawan-ts/gopress/pkg/feature/pop"
 	"github.com/Mulyawan-ts/gopress/pkg/feature/push"
@@ -25,6 +27,10 @@ func New(cap int) *GoPress {
 
 func (g *GoPress) Push(item string) bool {
 	return g.pusher.Push(item)
+}
+
+func (g *GoPress) PushWithContext(ctx context.Context, item string) bool {
+	return g.pusher.PushWithContext(ctx, item)
 }
 
 func (g *GoPress) Pop() (string, bool) {
