@@ -1,6 +1,6 @@
 package push
 
-import "github.com/Mulyawan-ts/gopress/pkg/counter"
+import "github.com/Mulyawan-ts/gopress/pkg/feature/counter"
 
 type Pusher struct {
 	queue   chan string

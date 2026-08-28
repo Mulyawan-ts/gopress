@@ -3,7 +3,7 @@ package push
 import (
 	"testing"
 
-	"github.com/Mulyawan-ts/gopress/pkg/counter"
+	"github.com/Mulyawan-ts/gopress/pkg/feature/counter"
 )
 
 func TestPush(t *testing.T) {
