@@ -1,29 +1,27 @@
 package gopress
 
+import (
+	"github.com/Mulyawan-ts/gopress/pkg/pop"
+	"github.com/Mulyawan-ts/gopress/pkg/push"
+)
+
 type GoPress struct {
-	queue chan string
+	pusher *push.Pusher
+	popper *pop.Popper
 }
 
 func New(cap int) *GoPress {
+	q := make(chan string, cap)
 	return &GoPress{
-		queue: make(chan string, cap),
+		pusher: push.NewPusher(q),
+		popper: pop.NewPopper(q),
 	}
 }
 
-func (p *GoPress) Push(item string) bool {
-	select {
-	case p.queue <- item:
-		return true
-	default:
-		return false
-	}
+func (g *GoPress) Push(item string) bool {
+	return g.pusher.Push(item)
 }
 
-func (p *GoPress) Pop() (string, bool) {
-	select {
-	case item := <-p.queue:
-		return item, true
-	default:
-		return "", false
-	}
+func (g *GoPress) Pop() (string, bool) {
+	return g.popper.Pop()
 }
