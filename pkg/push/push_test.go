@@ -3,10 +3,12 @@ package push
 import "testing"
 
 func TestPush(t *testing.T) {
-	p := New(1)
+	q := make(chan string, 1)
+	p := NewPusher(q)
+
 	p.Push("A")
 
 	if p.Push("B") {
-		t.Error("B ditolak karena antrean full")
+		t.Error("B harusnya ditolak karena channel penuh")
 	}
 }
