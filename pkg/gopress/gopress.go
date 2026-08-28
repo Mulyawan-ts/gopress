@@ -1,11 +1,13 @@
-package main
+package gopress
 
 type GoPress struct {
 	queue chan string
 }
 
-func NewGoPress(cap int) *GoPress {
-	return &GoPress{queue: make(chan string, cap)}
+func New(cap int) *GoPress {
+	return &GoPress{
+		queue: make(chan string, cap),
+	}
 }
 
 func (p *GoPress) Push(item string) bool {
