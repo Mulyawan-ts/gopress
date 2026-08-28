@@ -1,4 +1,4 @@
-package gopress
+package push
 
 import "testing"
 
