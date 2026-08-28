@@ -9,7 +9,7 @@ import (
 func TestPush(t *testing.T) {
 	q := make(chan string, 1)
 	c := counter.New()
-	p := NewPusher(q)
+	p := NewPusher(q, c)
 
 	p.Push("A")
 
