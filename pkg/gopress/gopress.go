@@ -18,3 +18,12 @@ func (p *GoPress) Push(item string) bool {
 		return false
 	}
 }
+
+func (p *GoPress) Pop() (string, bool) {
+	select {
+	case item := <-p.queue:
+		return item, true
+	default:
+		return "", false
+	}
+}
